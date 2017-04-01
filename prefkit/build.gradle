@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 25
@@ -10,7 +11,47 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    buildTypes {
+        release {
+        }
+        debug {
+            testCoverageEnabled true
+        }
+    }
 }
+
+jacoco {
+    // latest: 0.7.9 but not work with robolectric
+    // ref: http://qiita.com/teracy/items/fee05cb68022f8241825
+    toolVersion = "0.7.1+"
+}
+
+def coverageSourceDirs = ['src/main/java']
+def coverageExcludeFiles = ['**/R.class', '**/R$*.class', '**/DataBindingInfo.class', '**/android/databinding/*.*', '**/com/android/**/*.*', '**/BR.class']
+
+task jacoco(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled true
+        html.enabled true
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco/html/${project.name}"
+        xml.destination "${buildDir}/reports/jacoco/xml/${project.name}.xml"
+        classDirectories = files(
+                fileTree(
+                        dir: "${buildDir}/intermediates/classes/debug",
+                        exclude: coverageExcludeFiles))
+    }
+    sourceDirectories = files(coverageSourceDirs)
+    executionData = files "${buildDir}/jacoco/testDebugUnitTest.exec"
+
+    doLast {
+        println "jacoco xml report has been generated to file://${reports.xml.destination}"
+        println "jacoco html report has been generated to file://${reports.html.destination}/index.html"
+    }
+}
+
 
 dependencies {
     testCompile 'junit:junit:4.12'
