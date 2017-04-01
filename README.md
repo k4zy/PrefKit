@@ -58,14 +58,12 @@ interface SampleSchema {
 
 ```java
   PrefKit prefKit = new PrefKit(this);
-  SampleSchema samplePrefStore = prefKit.create(SampleSchema.class);
-  samplePrefStore.putWelcomeDialogFlag(true);
-  boolean flag = samplePrefStore.getWelcomeDialogFlag(false);
+  SampleSchema sampleSchema = prefKit.create(SampleSchema.class);
+  sampleSchema.setWelcomeDialogFlag(true);
+  sampleSchema.getWelcomeDialogFlag(false);
 ```
 
 License
 -------
 
-    MIT License
-
-    Copyright (c) 2017 Kazuki Yoshida
+MIT License

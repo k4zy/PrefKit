@@ -12,8 +12,8 @@ public class SampleApplication extends Application {
         super.onCreate();
         Stetho.initializeWithDefaults(this);
         PrefKit prefKit = new PrefKit(this);
-        SampleSchema samplePrefStore = prefKit.create(SampleSchema.class);
-        samplePrefStore.setWelcomeDialogFlag(true);
-        samplePrefStore.getWelcomeDialogFlag(false);
+        SampleSchema sampleSchema = prefKit.create(SampleSchema.class);
+        sampleSchema.setWelcomeDialogFlag(true);
+        sampleSchema.getWelcomeDialogFlag(false);
     }
 }
