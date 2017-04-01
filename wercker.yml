@@ -9,7 +9,7 @@ build:
     - script:
         name: run prefkit:testDebugUnitTest
         code: |
-          ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR prefkit:testDebugUnitTest -PdisablePreDex
+          ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR prefkit:testDebugUnitTest prefkit:coveralls -PdisablePreDex
     - script:
         name: run sample:assembleDebug
         code: |

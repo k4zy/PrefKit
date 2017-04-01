@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'jacoco'
+apply plugin: "com.github.kt3k.coveralls"
 
 android {
     compileSdkVersion 25
@@ -29,6 +30,7 @@ jacoco {
 def coverageSourceDirs = ['src/main/java']
 def coverageExcludeFiles = ['**/R.class', '**/R$*.class', '**/DataBindingInfo.class', '**/android/databinding/*.*', '**/com/android/**/*.*', '**/BR.class']
 
+
 task jacoco(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports after running tests."
@@ -52,6 +54,9 @@ task jacoco(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
     }
 }
 
+coveralls {
+    jacocoReportPath = "build/reports/jacoco/xml/prefkit.xml"
+}
 
 dependencies {
     testCompile 'junit:junit:4.12'

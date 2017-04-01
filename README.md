@@ -3,6 +3,7 @@ PrefKit
 
 [![wercker status](https://app.wercker.com/status/9211f47f64bd20cbbed355f3001c6d0e/s/master "wercker status")](https://app.wercker.com/project/byKey/9211f47f64bd20cbbed355f3001c6d0e)
 [![jitpack](https://jitpack.io/v/kazy1991/PrefKit.svg)](https://jitpack.io/#kazy1991/PrefKit)
+[![Coverage Status](https://coveralls.io/repos/github/kazy1991/PrefKit/badge.svg?branch=integrate_coveralls)](https://coveralls.io/github/kazy1991/PrefKit?branch=integrate_coveralls)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](http://fand.mit-license.org/)
 
 Typesafe key-value store for Android. Inspired by Retrofit.
