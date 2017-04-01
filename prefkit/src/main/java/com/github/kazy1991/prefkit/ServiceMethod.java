@@ -16,10 +16,19 @@ public class ServiceMethod {
 
     private Method method;
 
-    public ServiceMethod(Context context, Method method) {
+    ServiceMethod(Context context, Method method) {
         String schemaName = method.getDeclaringClass().getAnnotation(PrefSchema.class).value();
         this.sharedPreferences = context.getSharedPreferences(schemaName, Context.MODE_PRIVATE);
         this.method = method;
+    }
+
+    Object exec(Object[] args) {
+        if (isMatched(returnType(), void.class, Void.class)) {
+            put(args);
+            return null;
+        } else {
+            return get(args);
+        }
     }
 
     private void putBoolean(boolean value) {
@@ -97,16 +106,7 @@ public class ServiceMethod {
         }
     }
 
-    public Object exec(Object[] args) {
-        if (isMatched(returnType(), void.class, Void.class)) {
-            put(args);
-            return null;
-        } else {
-            return get(args);
-        }
-    }
-
-    public boolean isMatched(Type type, Class<?>... classes) {
+    private boolean isMatched(Type type, Class<?>... classes) {
         return Arrays.asList(classes).contains(type);
     }
 
