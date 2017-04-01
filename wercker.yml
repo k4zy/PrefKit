@@ -7,10 +7,10 @@ build:
     tag: 80419ac44ac6f4598546b0cffd77a643cbe72d96
   steps:
     - script:
-        name: run prefkit:testDebugUnitTest
+        name: run prefkit:test
         code: |
-          ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR prefkit:testDebugUnitTest -PdisablePreDex
+          ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR prefkit:jacoco prefkit:coveralls -PdisablePreDex
     - script:
-        name: run sample:assembleDebug
+        name: run sample:build
         code: |
           ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR sample:assembleDebug -PdisablePreDex
