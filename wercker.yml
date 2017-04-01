@@ -11,6 +11,6 @@ build:
         code: |
           ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR prefkit:testDebugUnitTest -PdisablePreDex
     - script:
-        name: run app:assembleDebug
+        name: run sample:assembleDebug
         code: |
-          ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR app:assembleDebug -PdisablePreDex
+          ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR sample:assembleDebug -PdisablePreDex
