@@ -39,7 +39,6 @@ task jacoco(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
         html.enabled true
         csv.enabled false
         html.destination "${buildDir}/reports/jacoco/html/${project.name}"
-        xml.destination "${buildDir}/reports/jacoco/xml/${project.name}.xml"
         classDirectories = files(
                 fileTree(
                         dir: "${buildDir}/intermediates/classes/debug",
@@ -49,7 +48,6 @@ task jacoco(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
     executionData = files "${buildDir}/jacoco/testDebugUnitTest.exec"
 
     doLast {
-        println "jacoco xml report has been generated to file://${reports.xml.destination}"
         println "jacoco html report has been generated to file://${reports.html.destination}/index.html"
     }
 }
