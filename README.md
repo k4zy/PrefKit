@@ -58,10 +58,10 @@ interface SampleSchema {
 #### Step 4. Access sharedPreference via interface.
 
 ```java
-  PrefKit prefKit = new PrefKit(this);
-  SampleSchema sampleSchema = prefKit.create(SampleSchema.class);
-  sampleSchema.setWelcomeDialogFlag(true);
-  sampleSchema.getWelcomeDialogFlag(false);
+PrefKit prefKit = new PrefKit(this);
+SampleSchema sampleSchema = prefKit.create(SampleSchema.class);
+sampleSchema.setWelcomeDialogFlag(true);
+sampleSchema.getWelcomeDialogFlag(false);
 ```
 
 License
