@@ -15,6 +15,18 @@ build:
         code: |
           bash <(curl -s https://codecov.io/bash)
     - script:
+        name: run danger
+        code: |
+          gem install --no-ri bundler && bundle install
+          WERCKER_GIT_DOMAIN=github.com WERCKER_GIT_OWNER=kazy1991 WERCKER_GIT_REPOSITORY=prefkit WERCKER_GIT_BRANCH=introduce_danger \
+          REPO_URL=https://$WERCKER_GIT_DOMAIN/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY
+          PR_BASE_URL=$REPO_URL/pull/$WERCKER_GIT_BRANCH \
+          PR_URL=`curl -Ls -o /dev/null -w %{url_effective} $PR_BASE_URL` \
+          BUILDKITE_PULL_REQUEST_REPO=https://$WERCKER_GIT_DOMAIN/$WERCKER_GIT_OWNER \
+          BUILDKITE_PULL_REQUEST=`echo $PR_URL | ruby -e "print STDIN.first.match(/\/(\d+)$/).to_a.at(1)"` \
+          BUILDKITE=true BUILDKITE_PULL_REQUEST_REPO=$PR_URL BUILDKITE_REPO=$REPO_URL \
+          bundle exec danger
+    - script:
         name: run sample:build
         code: |
           ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR sample:assembleDebug -PdisablePreDex
