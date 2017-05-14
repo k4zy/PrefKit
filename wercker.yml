@@ -18,7 +18,6 @@ build:
         name: run danger
         code: |
           gem install --no-ri bundler && bundle install
-          WERCKER_GIT_DOMAIN=github.com WERCKER_GIT_OWNER=kazy1991 WERCKER_GIT_REPOSITORY=prefkit WERCKER_GIT_BRANCH=introduce_danger \
           REPO_URL=https://$WERCKER_GIT_DOMAIN/$WERCKER_GIT_OWNER/$WERCKER_GIT_REPOSITORY
           PR_BASE_URL=$REPO_URL/pull/$WERCKER_GIT_BRANCH \
           PR_URL=`curl -Ls -o /dev/null -w %{url_effective} $PR_BASE_URL` \
