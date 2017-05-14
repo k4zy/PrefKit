@@ -37,7 +37,6 @@ task findbugs(type: FindBugs) {
     include '**/*.java'
     reports {
         xml {
-            destination "${project.rootDir}/build/reports/findbugs_report.xml"
             enabled = true
             withMessages = true
         }
