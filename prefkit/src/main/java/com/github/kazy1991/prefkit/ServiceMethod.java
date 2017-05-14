@@ -18,6 +18,8 @@ public class ServiceMethod {
 
     private PreferenceHelper helper;
 
+    public static final List<Locale> SUPPORT_LANG = Arrays.asList(Locale.JAPANESE, Locale.ENGLISH);
+
     ServiceMethod(Context context, Method method) {
         String schemaName = method.getDeclaringClass().getAnnotation(PrefSchema.class).value();
         SharedPreferences pref = context.getSharedPreferences(schemaName, Context.MODE_PRIVATE);
