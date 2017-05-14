@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'jacoco'
 apply plugin: "com.github.kt3k.coveralls"
+apply plugin: 'findbugs'
 
 android {
     compileSdkVersion compile_sdk_version as int
@@ -22,6 +23,29 @@ android {
     lintOptions {
         xmlReport true
     }
+}
+
+task findbugs(type: FindBugs) {
+    ignoreFailures = true
+    effort = "max"
+    reportLevel = "low"
+    excludeFilter = new File("${project.rootDir}/config/findbugs/findbugs_filter.xml")
+    classes = files("build/intermediates/classes/")
+    classes += files("${project.rootDir}/prefkit/build/intermediates/classes/")
+    source 'src/main'
+    source "${project.rootDir}/prefkit/src/main"
+    include '**/*.java'
+    reports {
+        xml {
+            enabled = true
+            withMessages = true
+        }
+        html {
+            enabled = false
+        }
+
+    }
+    classpath = files()
 }
 
 jacoco {

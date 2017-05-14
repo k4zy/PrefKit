@@ -11,5 +11,8 @@ warn("Big PR") if git.lines_of_code > 500
 android_lint.gradle_task = "prefkit:lintDebug"
 android_lint.report_file = "prefkit/build/reports/lint-results-debug.xml"
 android_lint.lint
-lgtm.check_lgtm
 
+findbugs.gradle_module = "prefkit"
+findbugs.gradle_task = "prefkit:findbugs"
+findbugs.report_file = "prefkit/build/reports/findbugs/findbugs.xml"
+findbugs.report
